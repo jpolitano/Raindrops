@@ -10,7 +10,7 @@ class catcher
 
   boolean catching(int i)//tests if raindrops are above/nearby, returns true or false
   {
-    if (abs(loc.x- rain[i].loc.x)<50 && abs(loc.y- rain [i].ys) < 10)// if rain touches catcher
+    if (abs(loc.x- rain[i].loc.x)<50 && abs(loc.y- rain [i].ys) < 20)// if rain touches catcher
     {
       return (true);// return that it touches the catcher
     }
@@ -22,7 +22,7 @@ class catcher
 
   void display()//display catcher
   {
-    ellipse(loc.x, loc.y,100, 20);//catcher shape
+    image(mitten,loc.x, loc.y,100,113);//catcher shape
     loc = new PVector(mouseX, height-50);//track location of mouseX
   }
 }

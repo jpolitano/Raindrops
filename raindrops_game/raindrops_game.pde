@@ -2,7 +2,7 @@
 rain_class rain []= new rain_class[10000];// 10K raindrops
 catcher mitt;
 int index, currentTime, oldTime, score, lose;
-PImage background;
+PImage background,mitten;
 boolean start;
 void setup()
 {
@@ -13,9 +13,11 @@ void setup()
     rain[i] = new rain_class(random(width), 0);// create new rain at random width for testing purposes
   }
   index=1;
+  imageMode(CENTER);
   lose=0;
   background = loadImage("Rain-Background.jpg");//load background image
   start = false;
+  mitten= loadImage("Umbrella.png");
 }
 
 void draw()
