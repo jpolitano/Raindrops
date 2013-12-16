@@ -1,7 +1,9 @@
-rain_class rain []= new rain_class[1000];// 1K raindrops
+//Recognition?
+rain_class rain []= new rain_class[10000];// 10K raindrops
 catcher mitt;
 int index, currentTime, oldTime, score, lose;
 PImage background;
+boolean start;
 void setup()
 {
   size(800, 500);
@@ -13,13 +15,24 @@ void setup()
   index=1;
   lose=0;
   background = loadImage("Rain-Background.jpg");//load background image
+  start = false;
 }
 
 void draw()
 {
   currentTime= millis();//current time is currentTime
   background(background);//set background
-  if (score < 200 && score > -200)//if you havent lost or won
+  if (start == false)//if the game hasn't started
+  {
+    fill(255, 0, 0);
+    textSize(32);
+    text("Click to Start", width/2, height/2);//text start screen
+    if (mousePressed)//if click, then make the game start
+    {
+      start=true;
+    }
+  }
+  if (score < 200 && score > -200 && start==true)//if you havent lost or won
   {
     for (int i=0; i < index; i++)
     {
@@ -27,12 +40,15 @@ void draw()
       rain[i].fall();
     }
   }
-  if (currentTime-oldTime>500)//spawn a new raindrop every .5 seconds
+  if (currentTime-oldTime>500 && start==true)//spawn a new raindrop every .5 seconds
   {
     index++;
     oldTime=currentTime;
   }
-  mitt.display();//display catcher
+  if (start==true)
+  {
+    mitt.display();//display catcher
+  }
   for (int i=0; i < index; i++)
   {
     if (mitt.catching(i)==true)//check if rain is caught
@@ -55,7 +71,10 @@ void draw()
     }
   }
   textSize(25);
+  if(start==true)//if we start the game
+  {
   text(score, width/2, height/2);//display score
+  }
   textSize(50);
   if (score > 199)//display win coditions
   {
@@ -99,4 +118,5 @@ void draw()
     textSize(30);
   }
 }
+
 
