@@ -1,12 +1,18 @@
 //Recognition?
+import ddf.minim.*;// import minim library
 rain_class rain []= new rain_class[10000];// 10K raindrops
 catcher mitt;
 int index, currentTime, oldTime, score, lose;
 PImage background,mitten;
 boolean start;
+Minim minim;
+AudioPlayer song;
+
 void setup()
 {
   size(800, 500);
+  noCursor();
+  textAlign(CENTER);
   mitt = new catcher();// create catcher mitt
   for (int i=0; i < rain.length; i++)//initialize rain
   {
@@ -18,6 +24,9 @@ void setup()
   background = loadImage("Rain-Background.jpg");//load background image
   start = false;
   mitten= loadImage("Umbrella.png");
+  minim = new Minim(this);//song set up
+  song= minim.loadFile("Adele - Set Fire to the Rain Lyrics.mp3");
+  song.play();// play song "Set Fire to the Rain" by adele. Only plays once, I do not know how to get it to play multiple times
 }
 
 void draw()
