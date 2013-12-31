@@ -2,7 +2,7 @@
 import ddf.minim.*;// import minim library
 rain_class rain []= new rain_class[10000];// 10K raindrops
 catcher mitt;
-int index, currentTime, oldTime, score, lose;
+int index, currentTime, oldTime, score;
 PImage background,mitten;
 boolean start;
 Minim minim;
@@ -16,11 +16,10 @@ void setup()
   mitt = new catcher();// create catcher mitt
   for (int i=0; i < rain.length; i++)//initialize rain
   {
-    rain[i] = new rain_class(random(width), 0);// create new rain at random width for testing purposes
+    rain[i] = new rain_class(random(width));// create new rain at random width for testing purposes
   }
   index=1;
   imageMode(CENTER);
-  lose=0;
   background = loadImage("Rain-Background.jpg");//load background image
   start = false;
   mitten= loadImage("Umbrella.png");
@@ -58,7 +57,9 @@ void draw()
   }
   if (start==true)
   {
+    textSize(25);
     mitt.display();//display catcher
+    text(score, width/2, height/2);//display score
   }
   for (int i=0; i < index; i++)
   {
@@ -66,7 +67,7 @@ void draw()
     {
       if (rain[i].evil==true)//if rain is evil
       {
-        if (rain[i].scored==false)// if rain has already been scored
+        if (rain[i].scored==false)// if rain hasn't already been scored
         {
           score-=200;// evil rain subtracts 200 points
           rain[i].scored = true;//now its been scored
@@ -81,28 +82,19 @@ void draw()
       rain[i].loc.x=1200;// remove rain
     }
   }
-  textSize(25);
-  if(start==true)//if we start the game
-  {
-  text(score, width/2, height/2);//display score
-  }
   textSize(50);
   if (score > 199)//display win coditions
   {
     text("Winner", width/2, height/2-100);
     textSize(32);
-    text("Click to play again", width/2-100, height/2 + 100);
-    if (lose == 0)
-    {
-      lose = 1;
-    }
+    text("Click to play again", width/2, height/2 + 100);
     if (mousePressed)//if click, reset game
     {
       index = 0;
       score = 0;
       for (int i=0; i < rain.length; i++)//initialize rain
       {
-        rain[i] = new rain_class(random(width), 0);// create new rain at random width for testing purposes
+        rain[i] = new rain_class(random(width));// create new rain at random width for testing purposes
       }
     }
     textSize(30);
@@ -112,21 +104,15 @@ void draw()
     text("Loser", width/2, height/2-100);
     textSize(32);
     text("Click to play again", width/2-100, height/2 + 100);
-    if (lose == 0)
-    {
-      lose = 1;
-    }
     if (mousePressed)//if clicked, reset
     {
       index = 0;
       score = 0;
       for (int i=0; i < rain.length; i++)//initialize rain
       {
-        rain[i] = new rain_class(random(width), 0);// create new rain at random width for testing purposes
+        rain[i] = new rain_class(random(width));// create new rain at random width
       }
     }
-    println(lose);
-    textSize(30);
   }
 }
 

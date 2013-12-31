@@ -2,7 +2,7 @@ This is a copy of the raindrops game repository after that repository broke. The
 
 Game design for raindrop catching game due 12/30/13
 
-
+WARNING: MUSIC
 Catching red raindrops remove your score (-200)
 Catching blue raindrops increases your score (+5)
 Missing blue raindrops decreases your score (-2)

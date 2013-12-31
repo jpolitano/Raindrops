@@ -1,7 +1,7 @@
 class catcher
 {
   PVector loc;//location
-  boolean con;// tests for connecion
+  //boolean con;// tests for connecion
 
     catcher()
   {
@@ -10,7 +10,7 @@ class catcher
 
   boolean catching(int i)//tests if raindrops are above/nearby, returns true or false
   {
-    if (abs(loc.x- rain[i].loc.x)<50 && abs(loc.y- rain [i].ys) < 20)// if rain touches catcher
+    if (abs(loc.x- rain[i].loc.x)<50 && abs(loc.y- rain [i].loc.y) < 20)// if rain touches catcher
     {
       return (true);// return that it touches the catcher
     }
